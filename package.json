@@ -1,0 +1,16 @@
+{
+  "name": "double-ou-rien",
+  "private": true,
+  "type": "module",
+  "description": "Double ou Rien — pierre-feuille-ciseaux casino sur Stellar/Soroban (partie back)",
+  "scripts": {
+    "test": "cargo test",
+    "deploy": "node scripts/deploy.js",
+    "bindings": "node scripts/bindings.js",
+    "demo": "node scripts/play-demo.js",
+    "indexer": "npm --prefix indexer start"
+  },
+  "dependencies": {
+    "double-ou-rien-client": "file:./bindings"
+  }
+}

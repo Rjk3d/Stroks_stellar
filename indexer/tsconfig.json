@@ -1,0 +1,20 @@
+{
+  // TypeScript sert UNIQUEMENT à vérifier les types (`npm run typecheck`).
+  // L'exécution se fait directement par Node 24, qui "efface" les types à la
+  // volée (type stripping) : aucune étape de compilation.
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noEmit": true,
+    // Imports avec l'extension .ts (exigé par Node pour exécuter du TypeScript).
+    "allowImportingTsExtensions": true,
+    // Interdit la syntaxe TypeScript que Node ne sait pas effacer (enum, namespace...).
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["src"]
+}

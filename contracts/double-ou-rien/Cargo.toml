@@ -1,0 +1,20 @@
+[package]
+name = "double-ou-rien"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+# cdylib = bibliothèque "dynamique" → c'est ce format qui devient le fichier .wasm déployé.
+# lib    = bibliothèque Rust classique → nécessaire pour que les tests puissent l'importer.
+crate-type = ["cdylib", "lib"]
+doctest = false
+
+[dependencies]
+# Unique dépendance : le SDK officiel Soroban (types, stockage, macros #[contract]...).
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+# En test uniquement : la feature "testutils" ajoute un faux réseau en mémoire
+# (Env::default(), mock des signatures, faux tokens...).
+soroban-sdk = { workspace = true, features = ["testutils"] }

@@ -1,0 +1,21 @@
+# Workspace Cargo : il regroupe tous les contrats du dossier contracts/.
+# `stellar contract build` compile chaque crate "cdylib" du workspace en WASM.
+[workspace]
+resolver = "2"
+members = ["contracts/*"]
+
+# Une seule version du SDK partagée par tous les contrats (évite les incohérences).
+[workspace.dependencies]
+soroban-sdk = "28.0.0"
+
+# Profil de compilation "release" recommandé par la doc Stellar :
+# un WASM le plus petit possible, car on paie des frais selon sa taille.
+[profile.release]
+opt-level = "z"          # optimise pour la taille plutôt que la vitesse
+overflow-checks = true   # un dépassement d'entier fait échouer la transaction au lieu de "boucler" silencieusement (sécurité !)
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true

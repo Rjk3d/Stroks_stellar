@@ -1,0 +1,249 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\docs\\01-bases-stellar.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\01-bases-stellar.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\docs\\glossaire.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\glossaire.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:indexer\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:indexer\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:indexer\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\_dec.mjs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\_dec.mjs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\play-demo.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\play-demo.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\deploy.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\deploy.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\bindings.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\bindings.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\deployment.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:deployment.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\Cargo.toml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Cargo.toml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\Cargo.lock||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Cargo.lock||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cde3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "01-bases-stellar.md",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\docs\\01-bases-stellar.md",
+              "RelativeDocumentMoniker": "docs\\01-bases-stellar.md",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\docs\\01-bases-stellar.md",
+              "RelativeToolTip": "docs\\01-bases-stellar.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-09-28T20:04:42.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "glossaire.md",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\docs\\glossaire.md",
+              "RelativeDocumentMoniker": "docs\\glossaire.md",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\docs\\glossaire.md",
+              "RelativeToolTip": "docs\\glossaire.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-09-28T20:04:40.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "tsconfig.json",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\tsconfig.json",
+              "RelativeDocumentMoniker": "indexer\\tsconfig.json",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\tsconfig.json",
+              "RelativeToolTip": "indexer\\tsconfig.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-28T20:04:39.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\package.json",
+              "RelativeDocumentMoniker": "indexer\\package.json",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\package.json",
+              "RelativeToolTip": "indexer\\package.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-28T20:04:38.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "package-lock.json",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\package-lock.json",
+              "RelativeDocumentMoniker": "indexer\\package-lock.json",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\indexer\\package-lock.json",
+              "RelativeToolTip": "indexer\\package-lock.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-28T20:04:36.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_dec.mjs",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\_dec.mjs",
+              "RelativeDocumentMoniker": "scripts\\_dec.mjs",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\_dec.mjs",
+              "RelativeToolTip": "scripts\\_dec.mjs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-28T20:04:28.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "play-demo.js",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\play-demo.js",
+              "RelativeDocumentMoniker": "scripts\\play-demo.js",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\play-demo.js",
+              "RelativeToolTip": "scripts\\play-demo.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-28T20:04:23.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "deploy.js",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\deploy.js",
+              "RelativeDocumentMoniker": "scripts\\deploy.js",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\deploy.js",
+              "RelativeToolTip": "scripts\\deploy.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-28T20:04:18.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "bindings.js",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\bindings.js",
+              "RelativeDocumentMoniker": "scripts\\bindings.js",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\scripts\\bindings.js",
+              "RelativeToolTip": "scripts\\bindings.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-28T20:04:15.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "deployment.json",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\deployment.json",
+              "RelativeDocumentMoniker": "deployment.json",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\deployment.json",
+              "RelativeToolTip": "deployment.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-28T20:03:47.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Cargo.toml",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\Cargo.toml",
+              "RelativeDocumentMoniker": "Cargo.toml",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\Cargo.toml",
+              "RelativeToolTip": "Cargo.toml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-09-28T20:03:42.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Cargo.lock",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\Cargo.lock",
+              "RelativeDocumentMoniker": "Cargo.lock",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\Cargo.lock",
+              "RelativeToolTip": "Cargo.lock",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-09-28T20:03:36.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Users\\maxse\\OneDrive\\Documents\\ecole\\esilv\\DVB\\Strocks\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-09-28T20:03:31.57Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
