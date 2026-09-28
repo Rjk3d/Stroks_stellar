@@ -1,94 +1,130 @@
-# 🎰 Double ou Rien — Stellar / Soroban (partie back)
+# 🎰 Double ou Rien
 
-Pierre-feuille-ciseaux façon casino contre une banque qui est un **smart contract** Stellar.
-Le joueur mise des XLM de test ; chaque victoire **double** son pot. Il peut rejouer tout le
-pot (x2 → x4 → x8…) ou encaisser. Égalité : on rejoue. Défaite : la banque garde tout.
+Pierre-feuille-ciseaux contre une **banque qui est un smart contract** sur Stellar (testnet).
 
-```
-contracts/double-ou-rien/   contrat Rust (Soroban) + 18 tests
-scripts/                    deploy.js, bindings.js, play-demo.js (Node, compatibles Windows)
-bindings/                   client TypeScript généré → à donner au front
-indexer/                    indexeur d'événements + API REST (Node 24, SQLite intégré)
-docs/                       documentation pédagogique (commencez par 01)
-deployment.json             IDs du déploiement courant (généré)
-```
+- Tu choisis ta mise et ton coup.
+- Le contrat tire le coup de la banque **au hasard**.
+- **Gagné** → la banque te paie le double. **Perdu** → elle garde ta mise. **Égalité** → remboursé.
 
-## Prérequis
-
-- Rust + la cible `wasm32v1-none`, [Stellar CLI](https://developers.stellar.org/docs/tools/cli) v28, **Node.js 24+**
-- Une identité CLI `alice` financée sur le testnet : `stellar keys generate alice --network testnet --fund`
-- **Windows** : si `cargo test` réclame `link.exe`, voir [docs/07-debug.md](docs/07-debug.md).
-  Ce dossier utilise la toolchain GNU (`rustup override set stable-x86_64-pc-windows-gnu`).
-- Si `stellar` ou `cargo` ne sont pas reconnus dans PowerShell :
-  `$env:Path = "$env:USERPROFILE\.cargo\bin;C:\Program Files (x86)\Stellar CLI;$env:Path"`
-
-## Démarrage rapide (PowerShell, à la racine)
+## Lancer le projet (PowerShell, à la racine)
 
 ```bash
 cargo test
 ```
-Lance les 18 tests unitaires du contrat.
+Lance les 5 tests du contrat (gagné, perdu, égalité, banque trop pauvre, mise invalide).
 
 ```bash
 npm run deploy
 ```
-Compile le contrat, le déploie sur le testnet avec alice, finance la banque (100 XLM) et
-écrit `deployment.json`.
+Compile, déploie le contrat avec le compte `alice`, met 100 XLM dans la banque et génère
+le client TypeScript (`/bindings`). À faire une fois, ou après chaque modification du contrat.
 
 ```bash
-npm run bindings
+npm run play
 ```
-Génère et compile le client TypeScript dans `/bindings`.
+Joue dans le terminal : mise, coup, résultat, lien de la transaction, solde et bilan.
 
-```bash
-npm run demo
+> Prérequis : Rust, Stellar CLI, Node.js, et un compte CLI `alice` financé
+> (`stellar keys generate alice --network testnet --fund`).
+> Si `cargo` n'est pas reconnu :
+> `$env:Path = "$env:USERPROFILE\.cargo\bin;$env:Path"`
+
+## Les fichiers
+
 ```
-Joue une vraie partie : mise de 1 XLM, encaissement à x2. `npm run demo -- 2 8` mise
-2 XLM et vise x8.
-
-```bash
-npm install --prefix indexer
+contracts/double-ou-rien/src/lib.rs    le contrat (≈ 80 lignes utiles)
+contracts/double-ou-rien/src/test.rs   les tests
+scripts/deploy.js                      déploiement + génération du client TypeScript
+scripts/play.js                        la partie dans le terminal (exemple pour le front)
+scripts/lib/stellar-cli.js             lance la commande `stellar` depuis Node
+deployment.json                        adresse du contrat déployé (généré)
+bindings/                              client TypeScript généré (généré)
 ```
-Installe les dépendances de l'indexeur (une seule fois).
 
-```bash
-npm run indexer
+## Comment ça marche
+
 ```
-Lance l'API sur http://localhost:3001 : `/health`, `/history/:address`, `/leaderboard`.
+ Joueur (play.js ou front)                 Blockchain Stellar (testnet)
+ ─────────────────────────                 ───────────────────────────────────
+ choisit mise + coup
+ client.play(...) ───── transaction ─────▶ Contrat "Double ou Rien" = la banque
+   signée par le joueur                      1. vérifie la signature du joueur
+                                             2. mise : joueur → banque
+                                             3. tire le coup de la banque (hasard)
+                                             4. paie : banque → joueur (2×, 1× ou 0)
+ affiche le résultat ◀──── résultat ─────── { bank_move, outcome, payout }
+```
 
-## Le contrat en bref
+**Le contrat en une fonction** : `play(player, player_move, bet) -> Round`
+- `player.require_auth()` : le joueur doit avoir **signé**, sinon personne ne peut miser
+  l'argent d'un autre.
+- Erreur `InvalidBet` (#1) si la mise est ≤ 0, `BankTooPoor` (#2) si la banque ne peut pas payer.
+- Le hasard vient de `env.prng()`, le générateur fourni par le réseau.
+- Une erreur **annule toute la transaction** : rien n'est transféré.
 
-| Fonction | Qui | Rôle |
-|---|---|---|
-| `start(player, player_move, bet)` | joueur | mise et 1er tour → `Outcome` |
-| `play(player, player_move)` | joueur | remet tout le pot en jeu → `Outcome` |
-| `cash_out(player)` | joueur | encaisse → montant |
-| `get_game` / `get_stats` / `get_config` / `get_bank` | tous | lectures gratuites |
-| `withdraw(amount)` / `set_config(config)` | admin | gestion de la banque |
+**Côté joueur (`play.js`)**, un appel se fait en 3 temps :
+1. `await client.play(...)` **simule** la transaction (calcul des frais, détection des erreurs, gratuit) ;
+2. `await tx.signAndSend()` **signe**, envoie et attend la confirmation (~5 s) ;
+3. `sent.result` contient le **vrai** résultat. Celui de la simulation ne compte pas : le
+   hasard y est différent.
 
-Codes d'erreur, maths du jeu et diagramme d'états : [docs/03](docs/03-le-contrat-explique.md).
+## Les notions à connaître
 
-## Documentation
+| Notion | En une phrase |
+|---|---|
+| **Testnet** | Le réseau de test de Stellar : les XLM n'y valent rien. |
+| **XLM / stroop** | La monnaie de Stellar ; 1 XLM = 10 000 000 stroops (les contrats n'utilisent que des entiers). |
+| **Compte** | Une paire de clés : l'adresse publique `G...` et la clé secrète `S...` qui signe (à ne jamais partager). |
+| **Smart contract** | Un programme stocké sur la blockchain (adresse `C...`), que personne ne peut modifier, et qui peut détenir de l'argent. |
+| **Soroban / WASM** | Les contrats Stellar s'écrivent en Rust et sont compilés en WebAssembly. |
+| **SAC** | Sur Soroban, le XLM lui-même est un contrat (`transfer`, `balance`). |
+| **Transaction** | Une demande signée envoyée au réseau ; elle réussit entièrement ou pas du tout. |
+| **Frais** | Chaque transaction coûte une fraction de centime. |
+| **TTL / loyer** | Un contrat stocké se paie pour une durée limitée. `deploy.js` le prolonge de 30 jours. |
+| **Bindings** | Client TypeScript généré automatiquement à partir du contrat : `client.play(...)`. |
+| **Freighter** | Le portefeuille navigateur qui signera à la place de la clé locale dans le front. |
 
-1. [Bases de Stellar](docs/01-bases-stellar.md)
-2. [Rust pour Soroban](docs/02-rust-pour-soroban.md)
-3. [Le contrat expliqué](docs/03-le-contrat-explique.md)
-4. [Cycle d'une transaction](docs/04-cycle-transaction.md)
-5. [**Intégration front**](docs/05-integration-front.md) ← pour le développeur front
-6. [Sécurité](docs/06-securite.md)
-7. [Debug : erreurs rencontrées](docs/07-debug.md)
-8. [Exercices](docs/08-exercices.md)
-9. [Pitch hackathon](docs/09-pitch-hackathon.md)
-10. [Glossaire](docs/glossaire.md)
+**Rust dans le contrat** : `enum` (un choix parmi plusieurs), `struct` (un groupe de
+valeurs), `match` (tester tous les cas), `Result` (`Ok` ou `Err`, pas d'exceptions en Rust),
+`&` (prêter une valeur sans la donner), `#[contract...]` (macros du SDK qui génèrent le code
+technique).
 
-## Dépendances (et pourquoi)
+## Pour le front
 
-| Dépendance | Où | Pourquoi |
-|---|---|---|
-| `soroban-sdk` 28 | contrat | le SDK officiel des contrats Stellar (seule dépendance Rust) |
-| `double-ou-rien-client` (local) | scripts | les bindings générés ; ré-exportent `@stellar/stellar-sdk` |
-| `@stellar/stellar-sdk` 17 | indexeur | client RPC (`getEvents`) et décodage XDR (`scValToNative`) |
-| `express` | indexeur | serveur HTTP minimaliste, le plus répandu |
-| `cors` | indexeur | autoriser le front (autre port) à appeler l'API |
-| `typescript` + `@types/*` (dev) | indexeur | vérification de types uniquement (`npm run typecheck`) |
-| SQLite (`node:sqlite`) | indexeur | **intégré à Node 24** : aucune installation ni compilation |
+1. Récupérer le dossier `bindings/`, puis `npm install ../chemin/bindings @stellar/freighter-api`.
+2. Reprendre `scripts/play.js`. La seule différence : au lieu de `basicNodeSigner(keypair)`,
+   signer avec Freighter :
+```ts
+import { requestAccess, signTransaction } from "@stellar/freighter-api";
+const { address } = await requestAccess();
+const client = new Client({
+  contractId, rpcUrl: "https://soroban-testnet.stellar.org",
+  networkPassphrase: "Test SDF Network ; September 2015",
+  publicKey: address,
+  signTransaction: (xdr) => signTransaction(xdr, { networkPassphrase: "Test SDF Network ; September 2015", address }),
+});
+```
+
+## Limites (à dire au jury)
+
+- **Le hasard n'est pas sûr** : `env.prng()` peut être manipulé. Par exemple, un contrat
+  attaquant qui appelle le nôtre peut annuler sa transaction quand il perd, et ne garder
+  que ses victoires. C'est acceptable pour une démo ; en production, on utiliserait un
+  **commit-reveal** (chacun publie le hash de son choix, puis le révèle) ou un oracle de hasard.
+- **Pas d'avantage maison** : le jeu est équitable (1/3 gagné, 1/3 égalité, 1/3 perdu),
+  donc la banque ne gagne rien en moyenne.
+- **Pas de retrait** : les XLM de la banque restent dans le contrat, ce qui est sans
+  importance sur le testnet.
+
+## Problèmes rencontrés pendant le projet
+
+- **`link.exe` introuvable** au `cargo test` sous Windows : ce dossier utilise la toolchain
+  Rust GNU (`rustup override set stable-x86_64-pc-windows-gnu`).
+- **`os error 32` pendant `npm run deploy`** : un fichier de `bindings/` est ouvert ailleurs
+  (terminal dans ce dossier, OneDrive). Il faut fermer ou mettre en pause, puis relancer.
+- **Premier joueur qui payait ~2 XLM de frais** : le contrat prolongeait sa propre durée de vie
+  aux frais du joueur. On a déplacé la prolongation dans `deploy.js`.
+- **Transactions qui échouaient au hasard** (dans une ancienne version) : la simulation et
+  la vraie exécution ne tirent pas le même hasard. Si les issues n'ont pas le même coût, la
+  transaction peut dépasser ses limites. D'où la règle : **chaque issue fait les mêmes
+  opérations** (on transfère toujours, même 0 XLM).

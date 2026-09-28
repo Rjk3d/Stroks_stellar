@@ -1,15 +1,4 @@
 {
-  "network": "testnet",
-  "networkPassphrase": "Test SDF Network ; September 2015",
-  "rpcUrl": "https://soroban-testnet.stellar.org",
-  "contractId": "CAI7IXIL75RFOVQSUBLSSXX6CPTB6H2XQU6DVCS3QF44VUKARVGHW4JA",
-  "tokenId": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
-  "admin": "GAPLTGWPO55X7XVBG6OFKIOE7XFIIKY62TCOP4ZSV4K3EXPJNZAKPKLR",
-  "deployLedger": 4918344,
-  "deployedAt": "2026-09-28T17:08:30.697Z",
-  "config": {
-    "min_bet": "10000000",
-    "max_bet": "100000000",
-    "max_multiplier": 32
-  }
+  "contractId": "CAHM2T2F2G2ZCWXLMNKSPPFFDGGDJMLYDMPMP4HN7DSLDMQ67Q3TE5PZ",
+  "tokenId": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
 }

@@ -1,10 +1,9 @@
-# Artefacts de compilation Rust (très volumineux, régénérables)
+# Compilation Rust (volumineux, régénérable)
 target/
-# Instantanés écrits automatiquement par les tests Soroban
 test_snapshots/
 # Dépendances Node
 node_modules/
-# Build des bindings (régénéré par `npm run bindings`)
+# Client TypeScript : régénéré par `npm run deploy`
 bindings/dist/
-# Base de données de l'indexeur (reconstruite depuis la blockchain)
-indexer/data/
+# Fichiers de Visual Studio
+.vs/

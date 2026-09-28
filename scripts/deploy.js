@@ -1,110 +1,60 @@
 // =============================================================================
-// scripts/deploy.js — Compile, déploie le contrat sur le testnet, finance la
-// banque et écrit deployment.json (lu par les autres scripts, l'indexeur et le front).
-//
-// Usage : npm run deploy     (ou : node scripts/deploy.js)
+// npm run deploy
+// Compile le contrat, le déploie sur le testnet, met 100 XLM dans la banque,
+// puis génère le client TypeScript (/bindings) utilisé par play.js et le front.
 // =============================================================================
 
-import { writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import { stellar, NETWORK, RPC_URL, NETWORK_PASSPHRASE } from "./lib/stellar-cli.js";
+import { execSync } from "node:child_process";
+import { writeFileSync, readFileSync } from "node:fs";
+import { stellar } from "./lib/stellar-cli.js";
 
-// En module ES (import/export), `__dirname` n'existe pas : on le reconstruit.
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const WASM_PATH = join(ROOT, "target", "wasm32v1-none", "release", "double_ou_rien.wasm");
-
-// Identité de la CLI qui paie le déploiement et devient admin du contrat.
-const SOURCE = "alice";
-// 1 XLM = 10 000 000 stroops (l'unité entière utilisée par les contrats).
-const XLM = 10_000_000n; // `n` = BigInt : entiers de taille illimitée, comme i128 en Rust.
-const BANK_FUNDING = 100n * XLM;
-
-// Configuration initiale du jeu (modifiable ensuite avec set_config).
-// Les i128 sont passés en CHAÎNES : JSON ne sait pas représenter les très grands entiers.
-const CONFIG = {
-  min_bet: (1n * XLM).toString(), // 1 XLM
-  max_bet: (10n * XLM).toString(), // 10 XLM
-  max_multiplier: 32, // au plus x32 (5 victoires d'affilée) ; chaque victoire double le pot
-};
-
-// ---------------------------------------------------------------------------
-// 1. Compilation Rust → WASM (optimisé par la CLI).
-// ---------------------------------------------------------------------------
+// 1. Compiler le contrat Rust en WebAssembly (.wasm).
 stellar(["contract", "build"]);
 
-// ---------------------------------------------------------------------------
-// 2. Adresse du contrat du XLM natif.
-// Sur Soroban, même le XLM est manipulé via un contrat : le "Stellar Asset
-// Contract" (SAC). Son adresse est déterministe (dérivée de l'actif + réseau).
-// ---------------------------------------------------------------------------
-const tokenId = stellar(["contract", "id", "asset", "--asset", "native", "--network", NETWORK]);
+// 2. L'adresse du contrat du XLM (sur Soroban, même le XLM est un contrat).
+const tokenId = stellar(["contract", "id", "asset", "--asset", "native", "--network", "testnet"]);
 
-// Adresse publique (G...) de alice : elle sera l'admin du contrat.
-const adminAddress = stellar(["keys", "address", SOURCE]);
-
-// ---------------------------------------------------------------------------
-// 3. Déploiement = upload du WASM + création d'une instance + appel du
-// constructeur, en une seule commande. Les arguments après `--` sont ceux
-// du __constructor (même noms que dans le code Rust).
-// L'alias permet ensuite d'écrire `--id double-ou-rien` dans la CLI.
-// ---------------------------------------------------------------------------
+// 3. Déployer notre contrat avec le compte "alice". Ce qui suit `--` est passé
+//    au constructeur : `__constructor(token)`.
 const contractId = stellar([
   "contract", "deploy",
-  "--wasm", WASM_PATH,
-  "--source-account", SOURCE,
-  "--network", NETWORK,
-  "--alias", "double-ou-rien",
-  "--",
-  "--admin", adminAddress,
-  "--token", tokenId,
-  "--config", JSON.stringify(CONFIG),
+  "--wasm", "target/wasm32v1-none/release/double_ou_rien.wasm",
+  "--source-account", "alice",
+  "--network", "testnet",
+  "--", "--token", tokenId,
 ]);
 
-// ---------------------------------------------------------------------------
-// 4. Financement de la banque : alice transfère 100 XLM au contrat en
-// appelant la fonction `transfer` du contrat XLM.
-// ---------------------------------------------------------------------------
+// 4. Remplir la banque : alice envoie 100 XLM au contrat
+//    (1 XLM = 10 000 000 stroops).
+const alice = stellar(["keys", "address", "alice"]);
 stellar([
-  "contract", "invoke",
-  "--id", tokenId,
-  "--source-account", SOURCE,
-  "--network", NETWORK,
-  "--",
-  "transfer",
-  "--from", adminAddress,
-  "--to", contractId,
-  "--amount", BANK_FUNDING.toString(),
+  "contract", "invoke", "--id", tokenId, "--source-account", "alice", "--network", "testnet",
+  "--", "transfer", "--from", alice, "--to", contractId, "--amount", "1000000000",
 ]);
 
-// ---------------------------------------------------------------------------
-// 5. Numéro du ledger actuel : l'indexeur commencera à lire les événements
-// à partir d'ici (inutile de fouiller avant le déploiement).
-// Appel JSON-RPC direct avec fetch (intégré à Node 18+).
-// ---------------------------------------------------------------------------
-const response = await fetch(RPC_URL, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getLatestLedger" }),
-});
-const { result } = await response.json();
+// 5. Sur Stellar, stocker un contrat se paie comme un loyer, pour une durée
+//    limitée. On le prolonge ici de ~30 jours (1 jour ≈ 17 280 ledgers de 5 s).
+//    À relancer si le contrat doit vivre plus longtemps.
+stellar([
+  "contract", "extend", "--id", contractId, "--ledgers-to-extend", String(30 * 17_280),
+  "--source-account", "alice", "--network", "testnet",
+]);
 
-// ---------------------------------------------------------------------------
-// 6. deployment.json : la "carte d'identité" du déploiement.
-// ---------------------------------------------------------------------------
-const deployment = {
-  network: NETWORK,
-  networkPassphrase: NETWORK_PASSPHRASE,
-  rpcUrl: RPC_URL,
-  contractId,
-  tokenId,
-  admin: adminAddress,
-  deployLedger: result.sequence,
-  deployedAt: new Date().toISOString(),
-  config: CONFIG,
-};
-writeFileSync(join(ROOT, "deployment.json"), JSON.stringify(deployment, null, 2) + "\n");
+// 6. Noter les adresses utiles.
+writeFileSync("deployment.json", JSON.stringify({ contractId, tokenId }, null, 2) + "\n");
 
-console.log("\n✅ Déploiement terminé :");
-console.log(deployment);
-console.log(`🔎 https://stellar.expert/explorer/testnet/contract/${contractId}`);
+// 7. Générer le client TypeScript à partir du contrat déployé, le compiler,
+//    puis l'installer dans le projet (voir "dependencies" dans package.json).
+stellar([
+  "contract", "bindings", "typescript",
+  "--contract-id", contractId, "--network", "testnet",
+  "--output-dir", "bindings", "--overwrite",
+]);
+const pkg = JSON.parse(readFileSync("bindings/package.json", "utf8"));
+pkg.name = "double-ou-rien-client";
+writeFileSync("bindings/package.json", JSON.stringify(pkg, null, 2) + "\n");
+execSync("npm install && npm run build", { cwd: "bindings", stdio: "inherit" });
+execSync("npm install", { stdio: "inherit" });
+
+console.log(`\n✅ Contrat déployé : https://stellar.expert/explorer/testnet/contract/${contractId}`);
+console.log("   Pour jouer : npm run play");
