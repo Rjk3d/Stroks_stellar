@@ -29,6 +29,13 @@ Joue dans le terminal : mise, coup, résultat, lien de la transaction, solde et 
 > Si `cargo` n'est pas reconnu :
 > `$env:Path = "$env:USERPROFILE\.cargo\bin;$env:Path"`
 
+## Documentation
+
+1. [Comprendre Stellar](docs/01-comprendre-stellar.md) : les notions de base
+2. [Le contrat](docs/02-le-contrat.md) : le code expliqué bloc par bloc
+3. [Les scripts](docs/03-les-scripts.md) : déployer, jouer, vérifier sur stellar.expert
+4. [**Guide front**](docs/04-guide-front.md) : brancher l'interface avec Freighter
+
 ## Les fichiers
 
 ```
