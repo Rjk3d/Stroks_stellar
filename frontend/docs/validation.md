@@ -2,7 +2,7 @@
 
 ## Vérifié
 
-- **48 tests automatisés réussis** : les neuf combinaisons pierre-feuille-ciseaux, montants décimaux exacts et limites, paiement et bénéfice, remise des gains en jeu, égalités répétées, transitions, absence de double paiement après reprise, erreurs et suivi RPC, connexion Freighter avec réponses simulées.
+- **51 tests automatisés réussis** : les neuf combinaisons pierre-feuille-ciseaux, montants décimaux exacts et limites, affichage du solde, liens de transaction, paiement et bénéfice, remise des gains en jeu, égalités répétées, transitions, absence de double paiement après reprise, erreurs et suivi RPC, connexion Freighter avec réponses simulées.
 - **Compilation de production réussie**, TypeScript strict. Dépendances du front installées sans environnement Rust.
 - **Parcours dans le navigateur sur la version compilée** : 100 → mise 10, victoire → 110 ; remiser 20, égalité → 110 ; rejouer 20, victoire → 130 ; remiser 40, défaite → 90 et retour au menu.
 - **Interruption après envoi simulé** : actualisation, récupération de la référence, confirmation et un seul crédit. Aucun bouton de nouvelle mise pendant l’attente.
@@ -19,13 +19,19 @@ Les tests RPC et Freighter utilisent des réponses simulées avec le décodage d
 
 - [ ] Ouvrir le front dans le navigateur équipé de Freighter, sélectionner Testnet et connecter le compte de l’équipe.
 - [ ] Vérifier son solde disponible et la réserve de la banque avec le script de contrôle.
-- [ ] Signer une petite manche et comparer choix, résultat, paiement et frais avec Stellar Expert.
+- [ ] Signer une petite manche et comparer choix, résultat, paiement et frais avec Stellar Lab via « Voir la transaction ». Rejouer une manche et vérifier que le lien contient son nouveau hash.
 - [ ] Refuser une signature et vérifier l’absence de nouvelle transaction.
 - [ ] Actualiser après un envoi et vérifier la reprise via le hash conservé, sans nouvelle demande de mise.
 - [ ] Revenir au mode démo, sélectionner « Parcours jury », réinitialiser à 100 XLM fictifs et répéter le pitch en plein écran.
 - [ ] Confirmer l’heure du mercredi 30 septembre et garder une marge avant le jury.
 
 **État de livraison :** démo autonome jouable et vérifiée ; intégration Testnet implémentée, essai signé avec Freighter restant à réaliser par l’équipe.
+
+## Correction du lien de transaction — 29 septembre 2026
+
+- Transaction réelle `ca5ec5c48acbe88e9271a7e1736c66a23d0213292405b30e67a3f4183246187e` retrouvée par le RPC et Horizon, alors que Stellar Expert répond « transaction introuvable ».
+- Ouverture directe du nouveau lien dans un nouvel onglet vérifiée : Stellar Lab affiche `Success`, l’appel `play`, une mise de 100 000 000 stroops (10 XLM) et un paiement de 200 000 000 stroops (20 XLM).
+- Liens du résultat et du menu construits à partir du hash courant, sans transaction fixe. Tests de deux hashes successifs et rejet des références absentes, simulées ou invalides.
 
 ## Captures
 

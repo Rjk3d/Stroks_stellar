@@ -13,9 +13,9 @@ Depuis GitHub, ouvrir la branche `codex/frontend-strock` du dépôt `Rjk3d/Strok
 
 ## Version publiée
 
-Export de production du front au commit `81c5c3e771ce7502cfd7051fc25b3aeecb3ac2cd`, avec les 48 tests et la compilation validés avant publication. Les fichiers JavaScript, CSS, illustrations et polices sont hébergés ; le navigateur communique directement avec Stellar Testnet. Le contrat déployé par l’équipe reste inchangé.
+Export de production du front de la branche `codex/frontend-strock`. La correction du 29 septembre remplace le lien Stellar Expert par le dashboard Stellar Lab, avec le hash de chaque manche et le réseau Testnet explicites. Les 51 tests et la compilation sont validés avant publication. Le commit exact exporté figure dans `SOURCE.md` du checkout de publication. Les fichiers JavaScript, CSS, illustrations et polices sont hébergés ; le navigateur communique directement avec Stellar Testnet. Le contrat déployé par l’équipe reste inchangé.
 
-Le service d’hébergement confirme le déploiement. Une manche effectivement signée avec le Freighter de l’équipe reste à tester sur cette adresse avant la présentation.
+La transaction de victoire transmise par l’équipe a été vérifiée en lecture seule dans Stellar Lab : succès, appel `play`, mise de 10 XLM et paiement de 20 XLM. Avant la présentation, jouer une nouvelle manche depuis cette adresse et ouvrir son lien pour confirmer le parcours complet avec Freighter sur le poste du jury.
 
 ## Pour les prochaines modifications
 

@@ -48,7 +48,9 @@ Déroulé conseillé : miser 10, gagner (solde 110), remiser 20, faire égalité
 2. Dans Freighter, sélectionner **Testnet** et financer le compte avec les XLM de test proposés par le portefeuille.
 3. Sélectionner **Stellar Testnet**, puis **Connecter Freighter**.
 4. Choisir une petite mise, sélectionner un signe et examiner la demande Freighter avant de signer.
-5. Attendre la confirmation, vérifier le résultat, le solde et le lien Stellar Expert.
+5. Attendre la confirmation, vérifier le résultat, le solde et le lien « Voir la transaction ». Il ouvre Stellar Lab sur Testnet avec le hash de la manche courante : statut, appel `play`, transferts et frais. Le lien « Dernière transaction » du menu utilise la même référence.
+
+Le dashboard lit les données du RPC Stellar directement : une transaction confirmée peut être absente de l’index d’un explorateur tiers. Le lien reste soumis à la disponibilité et à la durée de conservation du RPC Testnet ; il ne constitue pas une archive permanente. Le mode démo ne génère aucun lien de transaction réelle.
 
 Le paiement est automatique : victoire = 2 × la mise versés ; égalité = mise remboursée ; défaite = mise perdue. **Remiser** prépare une nouvelle transaction. Il n’existe pas de retrait séparé. Chaque manche, y compris après égalité, nécessite une signature et des frais éventuels.
 

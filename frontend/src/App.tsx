@@ -45,6 +45,7 @@ import {
 } from './game';
 import * as demo from './adapters/demo';
 import { readPending } from './storage';
+import { transactionLink } from './transactionLink';
 
 const live = () => import('./adapters/stellar');
 const scenarios: [Scenario, string][] = [
@@ -383,7 +384,7 @@ export default function App() {
           : 'Cette fois, le bot l’emporte.',
     error: 'On reprend ?',
   }[game.phase];
-  const transactionUrl = hash ? `https://stellar.expert/explorer/testnet/tx/${hash}` : '';
+  const transactionUrl = transactionLink(hash);
 
   return (
     <div className={`app ${reduced ? 'reduced-motion' : ''}`}>
