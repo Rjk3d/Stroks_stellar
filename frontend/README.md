@@ -2,6 +2,12 @@
 
 Front React / TypeScript / Vite du jeu **Stroks_stellar**, conçu pour une fenêtre de navigateur maximisée. Le contrat Rust et les scripts du back restent inchangés.
 
+## Jouer en ligne
+
+**[Ouvrir strock — accès public](https://strock-stellar.reda-guettache.chatgpt.site)**
+
+Aucune installation pour le mode Démo. L’ordinateur qui a servi à développer le projet peut être éteint : le site est hébergé en HTTPS. Le mode Testnet demande Freighter et des XLM de test. [Détails de publication et mises à jour](docs/deployment.md).
+
 ## Installation et lancement
 
 Prérequis : **Node.js 22.12+** (validé avec 22.20), npm, et ce dépôt complet. Aucun environnement Rust ou Stellar CLI n’est nécessaire pour le front.

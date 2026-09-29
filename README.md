@@ -1,5 +1,13 @@
 # 🎰 Double ou Rien
 
+## Jouer en ligne — strock
+
+**[Ouvrir le jeu public](https://strock-stellar.reda-guettache.chatgpt.site)**
+
+Le jeu s’ouvre directement dans le navigateur sur PC, sans installation et sans serveur local. Le mode Démo permet de jouer avec des XLM fictifs. Pour le mode Stellar Testnet, utiliser Freighter sur Testnet avec un compte financé en XLM de test.
+
+L’interface et son guide sont dans [`frontend/`](frontend/README.md), sur la branche `codex/frontend-strock`. [Informations sur la publication](frontend/docs/deployment.md).
+
 Pierre-feuille-ciseaux contre une **banque qui est un smart contract** sur Stellar (testnet).
 
 - Tu choisis ta mise et ton coup.
