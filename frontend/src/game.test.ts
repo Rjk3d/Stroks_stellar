@@ -3,6 +3,7 @@ import {
   amountInput,
   botFor,
   formatAmount,
+  formatBalance,
   gameReducer,
   INITIAL_GAME,
   MAX_BET,
@@ -33,6 +34,15 @@ describe('les neuf duels', () => {
   });
 });
 describe('montants exacts', () => {
+  it('affiche le solde arrondi avec exactement deux décimales sans modifier les montants', () => {
+    expect(formatBalance(0n)).toBe('0,00');
+    expect(formatBalance(10n * UNIT)).toBe('10,00');
+    expect(formatBalance(101249999n)).toBe('10,12');
+    expect(formatBalance(101250000n)).toBe('10,13');
+    expect(formatBalance(99999999n)).toBe('10,00');
+    expect(formatBalance(123456789012345678901n)).toBe('12\u202f345\u202f678\u202f901\u202f234,57');
+    expect(formatAmount(101250000n)).toBe('10,125');
+  });
   it.each([
     ['0,0000001', 1n],
     ['10.1234567', 101234567n],

@@ -27,6 +27,7 @@ import { Dialog } from './components/Dialog';
 import {
   amountInput,
   formatAmount,
+  formatBalance,
   gameReducer,
   INITIAL_GAME,
   messageFor,
@@ -438,15 +439,15 @@ export default function App() {
 
       <main>
         <div className="context-row">
-          <span className="context-tag">
-            <span className="network-dot" />
-            {mode === 'demo' ? 'MODE DÉMO · XLM FICTIFS' : 'STELLAR TESTNET · XLM DE TEST'}
-          </span>
-          <span className="context-note">
-            {mode === 'demo'
-              ? 'Tout le jeu. Sans portefeuille.'
-              : 'Chaque manche est signée avec Freighter.'}
-          </span>
+          {mode === 'demo' && (
+            <>
+              <span className="context-tag">
+                <span className="network-dot" />
+                MODE DÉMO · XLM FICTIFS
+              </span>
+              <span className="context-note">Tout le jeu. Sans portefeuille.</span>
+            </>
+          )}
         </div>
         {(notice || storageError) && (
           <div
@@ -492,19 +493,12 @@ export default function App() {
           <>
             <section className="hero" aria-labelledby="hero-title">
               <div className="hero-copy">
-                <div className="eyebrow">
-                  <span className="little-line" /> LE CLASSIQUE, NOUVELLE DONNE.
-                </div>
                 <h1 id="hero-title">
                   Un choix.
                   <br />
                   <span>Tout peut changer.</span>
                 </h1>
-                <p>
-                  Pierre, feuille ou ciseaux. Défie le bot,
-                  <br />
-                  double ta mise et décide de la suite.
-                </p>
+                <p>Pierre, feuille, ciseaux.</p>
                 <div className="hero-pills">
                   <span>
                     <Gamepad2 size={16} /> Toi contre le bot
@@ -592,13 +586,6 @@ export default function App() {
                   {bet > 0n && !betError ? formatAmount(bet * 2n) : '—'} <small>XLM</small>
                   <ArrowUpRight size={23} />
                 </strong>
-                <p>
-                  {bet > 0n && !betError
-                    ? `dont +${formatAmount(bet)} XLM de bénéfice`
-                    : 'Le double de ta mise'}
-                  <br />
-                  hors frais réseau
-                </p>
               </div>
               <div className="start-block">
                 <button
@@ -876,7 +863,12 @@ export default function App() {
             <Wallet size={18} />
             <span>{mode === 'demo' ? 'TON SOLDE FICTIF' : 'SOLDE DU PORTEFEUILLE'}</span>
             <strong>
-              {balance ? formatAmount(balance.total) : '—'} <small>XLM</small>
+              {balance
+                ? mode === 'testnet'
+                  ? formatBalance(balance.total)
+                  : formatAmount(balance.total)
+                : '—'}{' '}
+              <small>XLM</small>
             </strong>
             {mode === 'testnet' && !balanceFresh && <em>À actualiser</em>}
           </span>

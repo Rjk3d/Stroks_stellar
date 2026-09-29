@@ -63,6 +63,12 @@ export function formatAmount(value: bigint): string {
   const [whole, fraction] = amountInput(value).split('.');
   return whole.replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f') + (fraction ? ',' + fraction : '');
 }
+export function formatBalance(value: bigint): string {
+  const absolute = value < 0n ? -value : value;
+  const cents = (absolute + UNIT / 200n) / (UNIT / 100n);
+  const whole = (cents / 100n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f');
+  return `${value < 0n && cents > 0n ? '-' : ''}${whole},${(cents % 100n).toString().padStart(2, '0')}`;
+}
 export function outcomeFor(player: Move, bot: Move): Outcome {
   if (player === bot) return 'tie';
   return (MOVES.indexOf(player) - MOVES.indexOf(bot) + 3) % 3 === 1 ? 'win' : 'loss';
